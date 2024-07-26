@@ -89,7 +89,7 @@ function AddNote({ onAddNotes, showForm, setShowForm }) {
       >
         {showForm ? "-" : "+"}
       </button>
-      {showForm && <Form onAddNotes={onAddNotes} />}
+      {showForm && <Form onAddNotes={onAddNotes} onSetShowForm={setShowForm} />}
     </>
   );
 
@@ -105,7 +105,7 @@ function AddNote({ onAddNotes, showForm, setShowForm }) {
   // );
 }
 
-function Form({ onAddNotes }) {
+function Form({ onAddNotes, onSetShowForm }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("");
@@ -127,6 +127,12 @@ function Form({ onAddNotes }) {
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <label>Note Title</label>
+      <a
+        className="close"
+        onClick={() => onSetShowForm((showForm) => (showForm = !showForm))}
+      >
+        &times;
+      </a>
       <input
         type="text"
         placeholder="Title"
